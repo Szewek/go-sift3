@@ -1,8 +1,10 @@
-package sift3
+package sift3_test
 
 import (
 	"fmt"
 	"testing"
+
+	"github.com/Szewek/go-sift3"
 )
 
 type siftTest struct {
@@ -24,7 +26,7 @@ var (
 func TestSiftBytes(t *testing.T) {
 	var dist float64
 	for k, v := range bytesifts {
-		dist = SiftBytes([]byte(v.a), []byte(v.b), 5)
+		dist = sift3.SiftBytes([]byte(v.a), []byte(v.b), 5)
 		t.Log(k, v.val, dist)
 		if dist != v.val {
 			t.FailNow()
@@ -34,7 +36,7 @@ func TestSiftBytes(t *testing.T) {
 func TestSiftRunes(t *testing.T) {
 	var dist float64
 	for k, v := range runesifts {
-		dist = SiftRunes([]rune(v.a), []rune(v.b), 5)
+		dist = sift3.SiftRunes([]rune(v.a), []rune(v.b), 5)
 		t.Log(k, v.val, dist)
 		if dist != v.val {
 			t.FailNow()
