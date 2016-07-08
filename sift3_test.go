@@ -46,6 +46,6 @@ func TestSiftRunes(t *testing.T) {
 func ExampleSiftBytes() {
 	a := []byte("Hello world!")
 	b := []byte("Hello others!")
-	fmt.Println(SiftBytes(a, b, 5))
+	fmt.Println(sift3.SiftBytes(a, b, 5))
 	// Output: 6.5
 }
