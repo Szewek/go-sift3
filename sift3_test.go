@@ -49,3 +49,8 @@ func ExampleSiftBytes() {
 	fmt.Println(sift3.SiftBytes(a, b, 5))
 	// Output: 6.5
 }
+func ExampleByteSift() {
+	var dist sift3.DistImpl = sift3.ByteSift(5)
+	fmt.Println(dist.Distance("Some string", "Other string"))
+	// Output: 4.5
+}

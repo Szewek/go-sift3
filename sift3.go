@@ -1,9 +1,31 @@
-// Package sift3 contains Sift3 (a "Super Fast and Accurate string distance algorithm") implementation
+// Package sift3 contains Sift3 (a "Super Fast and Accurate string distance algorithm") implementation.
 // For more details, see http://siderite.blogspot.com/2007/04/super-fast-and-accurate-string-distance.html
 package sift3
 
-// DefaultOffset
+type (
+	// DistImpl is a string distance implementation.
+	DistImpl interface {
+		// Distance calculates distance between two strings.
+		Distance(string, string) float64
+	}
+	// ByteSift measures distance between strings using bytes.
+	ByteSift int
+	// RuneSift measures distance between strings using runes.
+	RuneSift int
+)
+
+// DefaultOffset used for Sift3.
 const DefaultOffset int = 5
+
+// Distance uses SiftBytes to get distance.
+func (bs ByteSift) Distance(a, b string) float64 {
+	return SiftBytes([]byte(a), []byte(b), int(bs))
+}
+
+// Distance uses SiftRunes to get distance.
+func (rs RuneSift) Distance(a, b string) float64 {
+	return SiftRunes([]rune(a), []rune(b), int(rs))
+}
 
 // SiftBytes measures distance between two arrays of bytes.
 // Use this function if provided strings aren't Unicode (e-mails, URLs, etc...).
